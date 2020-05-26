@@ -1,0 +1,79 @@
+.table-container {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  #tableTemas_length {
+    display: none;
+  }
+  #tableTemas_filter {
+    display: none;
+  }
+  #tableTemas_info {
+    display: none;
+  }
+  .table {
+    thead {
+      th {
+        border-color: #323136;
+        color: #272727;
+        border-top: none;
+      }
+    }
+  }
+  .btn {
+    &:hover {
+      background-color: #ed2939;
+      color: white;
+      border-radius: 0;
+    }
+  }
+  .paginate_button {
+    border: 1px solid #002664;
+    margin: 0.5em;
+    padding: 0.25em 0.5em;
+    color: #002664;
+  }
+  .dataTables_paginate {
+    margin-top: 1.5em !important;
+  }
+  .previous {
+    display: none;
+  }
+  .current {
+    background-color: #ed2939;
+    color: white;
+  }
+}
+.create-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 5px;
+}
+
+table {
+  tbody {
+    td {
+      border-bottom: 1px solid #323136;
+      padding: 0.5em !important;
+    }
+  }
+}
+table.nowrap {
+  th {
+    vertical-align: middle;
+  }
+  td {
+    vertical-align: middle;
+    .editableRow {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-right: 5px;
+    }
+  }
+}
+
+input:disabled {
+  background-color: white;
+  border: none;
+}

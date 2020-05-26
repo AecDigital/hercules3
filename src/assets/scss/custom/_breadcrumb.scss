@@ -1,0 +1,24 @@
+.breadcrumb-container{
+  background-color:#e8e6df;
+}
+.breadcrumb{
+  background-color:#e8e6df;
+  margin-bottom:0;
+  padding-left:2.5em;
+  li {
+    a{
+      color:#002664;
+      font-weight:700;
+    }
+  }
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+  color:#002664;
+  content:">"
+}
+@media screen and (min-width:1450px){
+  .breadcrumb-container .breadcrumb{
+    margin-left:300px;
+  }
+}

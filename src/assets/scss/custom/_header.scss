@@ -1,0 +1,42 @@
+.logo-wrapper {
+  margin-top:1em;
+  img {
+    width:100%;
+    margin-left:1.5em;
+  }
+
+  h1 {
+    color:#ed2939;
+    font-weight:400;
+    margin-top: 0.25em;
+    margin-left: 0.5em;
+  }
+}
+
+.user-info {
+  display:none;
+}
+
+@media screen and (min-width:1024px){
+  .user-info {
+    display: block;
+    margin-top: 1em;
+    ul {
+      list-style: none;
+      padding-left: 0;
+      li {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 0.5em;
+        p {
+          margin-bottom: 0.5em;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+#main{
+  padding:1em;
+}

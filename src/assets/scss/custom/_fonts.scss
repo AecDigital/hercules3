@@ -1,0 +1,27 @@
+/*fonts*/
+@font-face {
+  font-family: "Trebuc";
+  src: url("../fonts/trebuc.ttf") format("ttf");
+  src: url("../fonts/trebuc.woff") format("woff");
+}
+@font-face {
+  font-family: "Trebuchet-MS";
+  src: url("../fonts/Trebuchet-MS-Italic.ttf") format("ttf");
+  src: url("../fonts/Trebuchet-MS-Italic.woff") format("woff");
+}
+
+body {
+  font-family: Trebuc, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+  height: 100%;
+  overflow-x:hidden;
+  font-size:1rem;
+  line-height: 1.2rem;
+}
+@media screen and (min-width:1800px){
+  header, #main{
+    margin-left:300px;
+  }
+}
+#main{
+  min-height:750px;
+}

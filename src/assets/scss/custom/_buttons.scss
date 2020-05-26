@@ -1,0 +1,50 @@
+.button-container {
+  ul {
+    list-style:none;
+    padding-left:1em;
+    margin-bottom:0;
+    li {
+      display:inline-block;
+      margin-right:1em;
+      width:30%;
+      margin-bottom:1em;
+      :last-child {
+        margin-right:0;
+      }
+    }
+  }
+}
+
+.btn-primary{
+  background-color:#00a9e0;
+  width:200px;
+  border-radius:0;
+  border:none;
+}
+@media screen and (min-width:1024px){
+  .btn-primary{
+    width:150px;
+  }
+  .button-container {
+    text-align:right;
+    ul {
+      li {
+        width:auto;
+        margin-right:0.5em;
+        :last-child {
+          margin-right:0.8em;
+        }
+      }
+    }
+  }
+}
+
+.btn-primary:hover,.btn-primary:active,.btn-primary:focus{
+  background-color:#002664;
+  border:none;
+}
+
+.subtitle h2{
+  color:#002664;
+  padding-left:0.5em;
+}
