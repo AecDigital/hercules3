@@ -11,12 +11,14 @@ import { User } from '../models/user.model';
 })
 
 export class AuthenticationService {
-  private userSubject: BehaviorSubject<User>;
-  public user: Observable<User>;
-  public apiUrl: string = 'https://next.json-generator.com/api/json/get/4yhMbcVj_'
+  private userSubject: BehaviorSubject<any>;
+  public user: Observable<any>;
+  publicUser: String = '';
+  // public apiUrl: string = 'https://next.json-generator.com/api/json/get/4kOt_ewou'
+  public apiUrl: string = '/EulenPRL/rest/autentication'
 
   constructor(private router: Router, private http: HttpClient) {
-    this.userSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('user')));
+    this.userSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
   }
 
@@ -25,12 +27,16 @@ export class AuthenticationService {
   }
 
   login(username, password) {
-    return this.http.post<User>(`${this.apiUrl}`, { username, password })
+     const payload = {
+      'user': username,
+     'pass': password
+     }
+    return this.http.post<any>(`${this.apiUrl}`, {...payload})
       .pipe(map(user => {
         // store user details and jwt token in session storage to keep user logged in between page refreshes
-        sessionStorage.setItem('session', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
+        sessionStorage.setItem('session', JSON.stringify(user.map));
+        this.userSubject.next(user.map);
+        return user.map;
       }));
   }
 
@@ -38,7 +44,7 @@ export class AuthenticationService {
     // remove user from local storage and set current user to null
     sessionStorage.removeItem('session');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login/']);
   }
 
   register(user: User) {

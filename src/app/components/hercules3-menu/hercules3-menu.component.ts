@@ -4,6 +4,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { MenuItems } from '../../shared/constants/h3MenuItems';
 import { MenuItem } from 'src/app/shared/interfaces/menu-items';
 import { User } from '../../shared/models/user.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 
 @Component({
@@ -12,8 +13,9 @@ import { User } from '../../shared/models/user.model';
   styleUrls: ['./hercules3-menu.component.scss']
 })
 
+
 export class Hercules3MenuComponent implements OnInit, AfterViewInit {
-  user: User;
+  session: any;
   TREE_DATA: MenuItem[] = [];
   private _transformer = (node: MenuItem, level: number) => {
     return {
@@ -31,18 +33,18 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() { }
+  constructor(private authentication: AuthenticationService) { }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
-    this.user = JSON.parse(sessionStorage.getItem("session"));   
   }
 
   ngAfterViewInit() {
-    if (this.user) {
-      this.menuBuilder(this.user.rol);
-      console.log(this.user);
+    this.session = JSON.parse(sessionStorage.getItem("session"));
+    console.log(this.session);
+    if (this.session.usuario) {
+      this.menuBuilder(this.session.usuario.rol);
     }
   }
 

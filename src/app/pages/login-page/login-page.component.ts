@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  user: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,8 +33,8 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      user: ['', Validators.required],
+      pass: ['', Validators.required]
   });
 
   // get return url from route parameters or default to '/'
@@ -52,11 +53,15 @@ onSubmit() {
   }
 
   this.loading = true;
-  this.authenticationService.login(this.f.username.value, this.f.password.value)
+  this.authenticationService.login(this.f.user.value, this.f.pass.value)
       .pipe(first())
       .subscribe(
           data => {
-              this.router.navigate([this.returnUrl]);
+            this.authenticationService.user.subscribe(usr => {
+              this.user = usr;
+              sessionStorage.setItem('session', JSON.stringify(this.user))
+            });
+              this.router.navigate([this.returnUrl], { state: { ...this.user } });
           },
           error => {
               this.loading = false;

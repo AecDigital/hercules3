@@ -14,7 +14,6 @@ export class AppComponent {
 
 
   ngOnInit() {
-    this.sessionUser = JSON.parse(sessionStorage.getItem("session"));
   }
 }
 

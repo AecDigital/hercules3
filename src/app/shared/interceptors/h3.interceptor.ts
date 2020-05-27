@@ -17,7 +17,7 @@ export class H3Interceptor implements HttpInterceptor {
 
         let test: any = '';
         this.aut.user.pipe(map(res => { test = res }));
-        const userSession = JSON.parse(sessionStorage.getItem("user"));
+        const userSession = JSON.parse(sessionStorage.getItem("session"));
 
         if (userSession) {
             const cloned = req.clone({
@@ -25,7 +25,6 @@ export class H3Interceptor implements HttpInterceptor {
                     "Bearer " + userSession.token)
             });
             console.log('userToken:' + userSession.token)
-            console.log(test);
             return next.handle(cloned);
         }
         else {

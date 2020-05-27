@@ -10,7 +10,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AdminTemasComponent } from './components/admin-temas/admin-temas.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { AdminTemasService } from './shared/services/admin-temas.service';
-import { AuthenticationService } from './shared/services/authentication.service'
+import { AuthenticationService } from './shared/services/authentication.service';
+import { AuthGuardService } from './shared/services/auth-guard-service.service';
 import { H3Interceptor } from './shared/interceptors/h3.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -59,7 +60,7 @@ import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-me
     MatIconModule,
     MatTreeModule
   ],
-  providers: [AdminTemasService, AuthenticationService, {
+  providers: [AdminTemasService, AuthenticationService, AuthGuardService, {
     provide: HTTP_INTERCEPTORS,
     useClass: H3Interceptor,
     multi: true

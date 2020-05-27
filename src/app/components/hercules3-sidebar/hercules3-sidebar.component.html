@@ -1,5 +1,5 @@
 
-<mat-sidenav-container *ngIf="currentView !== 'login'">
+<mat-sidenav-container *ngIf="sessionUser !== null">
     <mat-sidenav #sidenav mode="over">
       <mat-icon style="cursor: pointer" (click)="sidenav.toggle()">
         <span class="material-icons closeIcon">
@@ -10,7 +10,7 @@
     </mat-sidenav>
   
     <mat-sidenav-content>
-      <button *ngIf="currentView !== 'login'"  mat-button (click)="sidenav.toggle()"><span class="material-icons menuIcon">
+      <button mat-button (click)="sidenav.toggle()"><span class="material-icons menuIcon">
         menu
         </span></button>
       
@@ -19,7 +19,7 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 
-  <router-outlet *ngIf="currentView == 'login'"></router-outlet>
+  <router-outlet *ngIf="sessionUser === null"></router-outlet>
 
 
 

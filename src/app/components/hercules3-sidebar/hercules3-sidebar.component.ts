@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 
 @Component({
@@ -10,13 +11,12 @@ import { FormControl } from '@angular/forms';
 })
 export class Hercules3SidebarComponent implements OnInit {
   mode = new FormControl('over');
-  public currentView: string;
+  sessionUser: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
-    if (window.location.href.indexOf('login') > -1) {
-      this.currentView = 'login'
-    }
+    this.sessionUser = sessionStorage.getItem('session');
   }
+
 }
