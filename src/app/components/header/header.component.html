@@ -17,7 +17,7 @@
             <ul>
               <li class="icon-user"><img src="assets/img/user.svg"></li>
               <li>
-                <p>Usuario</p>
+                <p>{{ session.usuario.nombre }}</p>
                 <p>Administrador</p>
               </li>
               <li class="icon-cerrar text-right"><a href="#"><img (click)="logOut()" src="assets/img/cerrar.svg"></a></li>

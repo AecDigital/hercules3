@@ -6,7 +6,6 @@ import { MenuItem } from 'src/app/shared/interfaces/menu-items';
 import { User } from '../../shared/models/user.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
-
 @Component({
   selector: 'app-hercules3-menu',
   templateUrl: './hercules3-menu.component.html',
@@ -15,6 +14,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 
 
 export class Hercules3MenuComponent implements OnInit, AfterViewInit {
+
   session: any;
   TREE_DATA: MenuItem[] = [];
   private _transformer = (node: MenuItem, level: number) => {
@@ -38,6 +38,7 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
+    this.session = JSON.parse(sessionStorage.getItem("session"));
   }
 
   ngAfterViewInit() {

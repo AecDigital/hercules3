@@ -28,8 +28,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatRippleModule } from '@angular/material/core';
 
 import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-menu.component';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-me
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatTreeModule
+    MatTreeModule,
+    MatRippleModule
   ],
   providers: [AdminTemasService, AuthenticationService, AuthGuardService, {
     provide: HTTP_INTERCEPTORS,

@@ -16,7 +16,7 @@ export class Hercules3SidebarComponent implements OnInit, AfterViewChecked {
   constructor(private router: Router, private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.sessionUser = sessionStorage.getItem('session');
+    // this.sessionUser = sessionStorage.getItem('session');
   }
 
   ngAfterViewChecked(): void {

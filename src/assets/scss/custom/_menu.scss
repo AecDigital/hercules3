@@ -3,25 +3,38 @@
     color: white;
     background-color: #233670;
     outline: none;
-
+    *:focus {outline:none !important}
 }
 
 .mat-tree-node.cdk-tree-node.ng-star-inserted {
     background-color: #233670;
     padding-left: 10px !important;
+    *:focus {outline:none !important}
+}
+
+.button {
+    outline:none !important;
+    *:focus {outline:none !important}
 }
 
 .material-icons {
     display: flex;
     margin-left: 150px;
-    *:focus {outline:none !important}
 }
 
 .menuIcon {
     margin: 15px 30px 0 0;
+    *:focus {outline:none !important}
 }
 
 .closeIcon {
     margin-left: 60px;
     margin-top: 5px;
 }
+
+.mat-ripple-element {
+    display: none;
+    background-color: #233670 !important;
+    opacity: 0.9;
+}
+

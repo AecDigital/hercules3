@@ -6,10 +6,12 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+  session: any = {}
 
   constructor(private autentication: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.session = JSON.parse(sessionStorage.getItem("session"));
   }
 
   logOut = () => {
