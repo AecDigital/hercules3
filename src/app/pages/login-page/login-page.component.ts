@@ -22,15 +22,17 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-) { }
+) { 
 
   // redirect to home if already logged in
-//   if (this.authenticationService.userValue) {
-//     this.router.navigate(['/']);
-// }
-//   
+//    if (this.authenticationService.user) {
+//      this.router.navigate(['/userPage']);
+//  }
+}
+
 
   ngOnInit(): void {
+    this.authenticationService.logout();
     
     this.loginForm = this.formBuilder.group({
       user: ['', Validators.required],
