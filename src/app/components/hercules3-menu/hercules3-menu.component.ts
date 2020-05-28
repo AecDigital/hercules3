@@ -3,7 +3,6 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { MenuItems } from '../../shared/constants/h3MenuItems';
 import { MenuItem } from 'src/app/shared/interfaces/menu-items';
-import { User } from '../../shared/models/user.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
@@ -49,7 +48,7 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
   }
 
 // Build method for menu items depending on user session rol
-private menuBuilder = (userRol) => {
+private menuBuilder = (userRol: number) => {
   MenuItems.map(e => {
     if (e.rol === 0 || userRol >= e.rol) {
       this.TREE_DATA.push(e);

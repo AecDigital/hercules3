@@ -27,11 +27,11 @@ export class AuthenticationService {
   }
 
   login(username, password) {
-     const payload = {
+    const payload = {
       'user': username,
-     'pass': password
-     }
-    return this.http.post<any>(`${this.apiUrl}`, {...payload})
+      'pass': password
+    }
+    return this.http.post<any>(`${this.apiUrl}`, { ...payload })
       .pipe(map(user => {
         // store user details and jwt token in session storage to keep user logged in between page refreshes
         sessionStorage.setItem('session', JSON.stringify(user.map));

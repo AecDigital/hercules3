@@ -26,6 +26,7 @@
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.0",
+    "ng7-mat-breadcrumb": "^3.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

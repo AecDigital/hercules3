@@ -6,7 +6,19 @@ import { AuthGuardService } from './shared/services/auth-guard-service.service';
 
 
 const routes: Routes = [
-  { path : 'userPage', component : UserPageComponent, canActivate : [AuthGuardService] },
+  { 
+    path : 'herramientas/admin/datos-maestros/temas', 
+    component : UserPageComponent, 
+    canActivate : [AuthGuardService],
+    data: {
+      title: 'Admin Temas',
+      breadcrumb: [
+        {
+          label: 'Temas',
+          url: '/herramientas/admin/datos-maestros/temas'
+        }
+      ]
+    }, },
   { path : 'login', component: LoginPageComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

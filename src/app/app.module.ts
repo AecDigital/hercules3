@@ -30,6 +30,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatRippleModule } from '@angular/material/core';
 
+// Breadcrumbs library
+import { Ng7MatBreadcrumbModule } from "ng7-mat-breadcrumb";
+
+
 import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-menu.component';
 
 
@@ -61,7 +65,8 @@ import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-me
     MatSidenavModule,
     MatIconModule,
     MatTreeModule,
-    MatRippleModule
+    MatRippleModule,
+    Ng7MatBreadcrumbModule
   ],
   providers: [AdminTemasService, AuthenticationService, AuthGuardService, {
     provide: HTTP_INTERCEPTORS,

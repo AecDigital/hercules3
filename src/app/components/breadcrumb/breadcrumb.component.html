@@ -2,8 +2,12 @@
   <div class="row">
     <div class="col-12">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Administración</a></li>
-        <li class="breadcrumb-item active"><a href="#">Temas</a></li>
+        <li *ngFor="let breadcrumb of breadcrumbs">
+          <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+            {{ breadcrumb.label }}
+          </span>
+          <!-- <li class="breadcrumb-item"><a href="#">Administración</a></li>
+        <li class="breadcrumb-item active"><a href="#">Temas</a></li> -->
       </ol>
     </div>
   </div>
