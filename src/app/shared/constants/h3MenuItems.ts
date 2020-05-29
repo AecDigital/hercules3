@@ -4,7 +4,8 @@ export const MenuItems: MenuItem[] = [
     {
      id: 'escritorio',
      label: 'Mi Escritorio',
-     rol: 0
+     rol: 0,
+     linkTo: ''
     },
     {
       id: 'evaluaciones',
@@ -185,7 +186,8 @@ export const MenuItems: MenuItem[] = [
             {
               id: 'yyy',
               label: 'Temas',
-              rol: 4
+              rol: 4,
+              linkTo: '/herramientas/administracion/datos-maestros/temas'
             },
             {
               id: 'yyy',
@@ -195,12 +197,14 @@ export const MenuItems: MenuItem[] = [
             {
               id: 'yyy',
               label: 'Categorías EPI',
-              rol: 4
+              rol: 4,
+              linkTo: '/herramientas/administracion/datos-maestros/categorias-epi'
             },
             {
               id: 'yyy',
               label: 'Partes del cuerpo',
-              rol: 4
+              rol: 4,
+              linkTo: '/herramientas/administracion/datos-maestros/partes-cuerpo'
             },
             {
               id: 'yyy',

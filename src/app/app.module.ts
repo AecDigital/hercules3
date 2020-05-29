@@ -8,6 +8,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminTemasComponent } from './components/admin-temas/admin-temas.component';
+import { AdminPartesCuerpoService } from './shared/services/admin-partes-cuerpo.service';
+import { AdminPartesCuerpoComponent } from './components/admin-partes-cuerpo/admin-partes-cuerpo.component';
+import { CategEpisComponent } from './components/categ-epis/categ-epis.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { AdminTemasService } from './shared/services/admin-temas.service';
 import { AuthenticationService } from './shared/services/authentication.service';
@@ -18,6 +21,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeleteTemaDialogComponent } from './components/dialogs/delete-tema-dialog/delete-tema-dialog.component';
 import { SortByPipe } from './shared/pipes/sort-by.pipe';
 import { Hercules3SidebarComponent } from './components/hercules3-sidebar/hercules3-sidebar.component';
+
+
+// H3 modules...
+import { HerramientasModule } from '../app/h3-modules/herramientas/herramientas.module';
 
 // Angular Material...
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -35,6 +42,7 @@ import { Ng7MatBreadcrumbModule } from "ng7-mat-breadcrumb";
 
 
 import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-menu.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -52,6 +60,9 @@ import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-me
     SortByPipe,
     Hercules3SidebarComponent,
     Hercules3MenuComponent,
+    AdminPartesCuerpoComponent,
+    CategEpisComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -66,9 +77,10 @@ import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-me
     MatIconModule,
     MatTreeModule,
     MatRippleModule,
-    Ng7MatBreadcrumbModule
+    Ng7MatBreadcrumbModule,
+    HerramientasModule
   ],
-  providers: [AdminTemasService, AuthenticationService, AuthGuardService, {
+  providers: [AdminTemasService, AuthenticationService, AuthGuardService, AdminPartesCuerpoService, {
     provide: HTTP_INTERCEPTORS,
     useClass: H3Interceptor,
     multi: true

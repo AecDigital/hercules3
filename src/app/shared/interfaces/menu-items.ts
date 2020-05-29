@@ -3,4 +3,5 @@ export interface MenuItem {
     label: string;
     rol?: number;
     children?: MenuItem[];
+    linkTo?: string;
   }

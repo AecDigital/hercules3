@@ -19,6 +19,6 @@ export const Roles: userRol[] = [
     },
     {
         id: 4,
-        rolName: 'Técnico de central (Administrador)'
+        rolName: 'Tec. central - Administrador'
     }
 ]

@@ -12,15 +12,19 @@ import { AuthenticationService } from '../../shared/services/authentication.serv
 export class Hercules3SidebarComponent implements OnInit, AfterViewChecked {
   mode = new FormControl('over');
   sessionUser: any;
+  closedSideBar: true;
 
   constructor(private router: Router, private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
-    // this.sessionUser = sessionStorage.getItem('session');
   }
 
   ngAfterViewChecked(): void {
     this.sessionUser = sessionStorage.getItem('session');
+  }
+
+  toggleSideBar(boolean) {
+    this.closedSideBar = boolean;
   }
 
 }

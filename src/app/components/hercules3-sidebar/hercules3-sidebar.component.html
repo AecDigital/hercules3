@@ -1,12 +1,12 @@
 
 <mat-sidenav-container *ngIf="sessionUser !== null">
-    <mat-sidenav #sidenav mode="over">
+    <mat-sidenav #sidenav mode="over" closed='closedSideBar'>
       <mat-icon style="cursor: pointer" (click)="sidenav.toggle()">
         <span class="material-icons closeIcon">
           close
         </span>
       </mat-icon>
-     <app-hercules3-menu></app-hercules3-menu>
+     <app-hercules3-menu (closeSidebar)="toggleSideBar($event)"></app-hercules3-menu>
     </mat-sidenav>
   
     <mat-sidenav-content>

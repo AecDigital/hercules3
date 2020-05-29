@@ -1,68 +1,60 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { AdminTemasService } from '../../shared/services/admin-temas.service';
-import { AdminTema } from '../../shared/models/admin-tema.model';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { AdminPartesCuerpo } from 'src/app/shared/models/admin-partes-cuerpo.model';
+import { AdminPartesCuerpoService } from 'src/app/shared/services/admin-partes-cuerpo.service';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTemaDialogComponent } from '../dialogs/delete-tema-dialog/delete-tema-dialog.component';
 import {ExportExcelService} from '../../shared/services/export-excel.service';
-
+import { Observable } from 'rxjs';
+import { DeletePartesCuerpoDialogComponent } from '../dialogs/delete-partes-cuerpo-dialog/delete-partes-cuerpo-dialog.component';
 @Component({
-  selector: 'app-admin-temas',
-  templateUrl: './admin-temas.component.html',
+  selector: 'app-admin-partes-cuerpo',
+  templateUrl: './admin-partes-cuerpo.component.html',
 })
-export class AdminTemasComponent implements OnInit {
+export class AdminPartesCuerpoComponent implements OnInit {
 
   @Output() showFooter = new EventEmitter<boolean>();
-
-  temas: any;
+  parteCuerpo: AdminPartesCuerpo;
   showCreate: boolean;
   showEdit: boolean;
   showEditIndex: number;
   showComponent: boolean;
   orderBy: string;
 
-  constructor(private restService: AdminTemasService,
-              private snackBar: MatSnackBar,
-              private dialog: MatDialog,
-              private exportExcelService: ExportExcelService) { }
+  constructor(private restService: AdminPartesCuerpoService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private exportExcelService: ExportExcelService) { }
 
   ngOnInit(): void {
-    this.getTemas();
+    this.getPartesCuerpo();
     this.showCreate = false;
     this.showEdit = false;
     this.showComponent = true;
-    this.setDefaultOrder();
+    this.orderBy = 'asc';
   }
-
   setRefresh() {
-    this.setCloseCreate();
-    this.setCloseEdit();
-    this.setDefaultOrder();
-    this.getTemas();
+    this.showCreate = false;
+    this.showEdit = false;
+    this.showEditIndex = null;
+    this.orderBy = 'asc';
+    this.getPartesCuerpo();
   }
 
   setShowCreate(){
     this.showCreate = !this.showCreate;
-    this.setCloseEdit();
-  }
-
-  setCloseCreate() {
-    this.showCreate = false;
+    this.showEdit = false;
+    this.showEditIndex = null;
   }
 
   setShowEdit(index: number){
-    this.setCloseCreate();
+    this.showCreate = false;
     this.showEdit = !this.showEdit;
     this.showEditIndex = index;
     if (!this.showEdit) {
       this.showEditIndex = null;
     }
-  }
-
-  setCloseEdit() {
-    this.showEdit = false;
-    this.showEditIndex = null;
   }
 
   setViewComponent() {
@@ -80,17 +72,9 @@ export class AdminTemasComponent implements OnInit {
     }
   }
 
-  setDefaultOrder() {
-    this.orderBy = 'asc';
-  }
-
   exportAsExcel() {
-    const exportData = [];
-    this.temas.forEach(e => {
-      exportData.push({Nombre: e.nombre});
-    });
-    console.log(exportData);
-    this.exportExcelService.exportAsExcelFile(exportData, 'Temas');
+    const exportData = this.parteCuerpo;
+    this.exportExcelService.exportAsExcelFile(exportData, 'ParteCuerpo');
   }
 
   showSnackBar = (message: string, action: string) => {
@@ -99,49 +83,49 @@ export class AdminTemasComponent implements OnInit {
     });
   }
 
-  getTemas() {
-    this.restService.getTemas()
+  getPartesCuerpo() {
+    this.restService.getPartesCuerpo()
       .subscribe(data => {
-        this.temas = data;
-        console.log(this.temas);
-
+        this.parteCuerpo= data;
       });
   }
 
-  createTema(tema: string) {
-    const creatingTema = { nombre: tema};
+  createPartesCuerpo (parteCuerpo: string) {
+  
+    alert(parteCuerpo);
+    const creatingParteCuerpo = { nombre: parteCuerpo};
 
-    this.restService.createTema(creatingTema)
+    this.restService.createPartesCuerpo(creatingParteCuerpo)
       .pipe(first())
       .subscribe(
         data => {
           if (data.status === 200) {
-            this.showSnackBar('Tema creado correctamente', '');
+            this.showSnackBar('Partes Cuerpo creado correctamente', '');
             this.setShowCreate();
-            this.getTemas();
+            this.getPartesCuerpo();
           } else if (data.status !== 200) {
             this.showSnackBar('Ha ocurrido un error. Vuelva a intentarlo o inténtelo más tarde.', '');
           }
         },
         error => {
-          alert(error);
+          alert('error '+error);
         });
   }
 
-  editTema(id: number, updatedTema: string) {
-    const editedTema = {idTema: id, nombre: updatedTema};
+  editPartesCuerpo(id: number, updatePartesCuerpo: string) {
+    const editedParteCuerpo = {idTema: id, nombre: updatePartesCuerpo};
 
-    this.restService.updateTema(editedTema)
+    this.restService.updatePartesCuerpo(editedParteCuerpo)
       .pipe(first())
       .subscribe(
         data => {
           if (data.status === 200) {
-            this.showSnackBar('Tema actualizado correctamente', '');
-            this.getTemas();
+            this.showSnackBar('Partes Cuerpo actualizado correctamente', '');
+            this.getPartesCuerpo();
             this.setShowEdit(this.showEditIndex);
           } else if (data.status !== 200) {
             this.showSnackBar('Ha ocurrido un error. Vuelva a intentarlo o inténtelo más tarde.', '');
-            this.getTemas();
+            this.getPartesCuerpo();
             this.setShowEdit(this.showEditIndex);
           }
         },
@@ -150,17 +134,17 @@ export class AdminTemasComponent implements OnInit {
         });
   }
 
-  deleteTema(tema: AdminTema) {
-    const dialogRef = this.dialog.open(DeleteTemaDialogComponent, {
+  deletePartesCuerpo(parteCuerpo: AdminPartesCuerpo) {
+    const dialogRef = this.dialog.open(DeletePartesCuerpoDialogComponent, {
       data: {
-        datos: tema
+        datos: parteCuerpo
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'ELIMINADO'){
-        this.showSnackBar('Tema eliminado correctamente', '');
-        this.getTemas();
+        this.showSnackBar('Parte Cuerpo eliminado correctamente', '');
+        this.getPartesCuerpo();
       } else if (result === 'CERRADO' || result === undefined) {
         this.showSnackBar('El usuario ha cancelado el proceso.', '');
       } else {

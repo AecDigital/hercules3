@@ -1,68 +1,61 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { AdminTemasService } from '../../shared/services/admin-temas.service';
-import { AdminTema } from '../../shared/models/admin-tema.model';
+import { CategEpisService } from '../../shared/services/categ-epis.service';
+import { CategEpis } from '../../shared/models/categ-epis.model';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteTemaDialogComponent } from '../dialogs/delete-tema-dialog/delete-tema-dialog.component';
+import { DeleteCategEpiDialogComponent } from '../dialogs/delete-categ-epi-dialog/delete-categ-epi-dialog.component';
 import {ExportExcelService} from '../../shared/services/export-excel.service';
 
 @Component({
-  selector: 'app-admin-temas',
-  templateUrl: './admin-temas.component.html',
+  selector: 'app-categ-epis',
+  templateUrl: './categ-epis.component.html',
+  styleUrls: ['./categ-epis.component.scss']
 })
-export class AdminTemasComponent implements OnInit {
-
+export class CategEpisComponent implements OnInit {
   @Output() showFooter = new EventEmitter<boolean>();
 
-  temas: any;
+  categorias: CategEpis;
   showCreate: boolean;
   showEdit: boolean;
   showEditIndex: number;
   showComponent: boolean;
   orderBy: string;
 
-  constructor(private restService: AdminTemasService,
+  constructor(private restService: CategEpisService,
               private snackBar: MatSnackBar,
               private dialog: MatDialog,
               private exportExcelService: ExportExcelService) { }
 
   ngOnInit(): void {
-    this.getTemas();
+    this.getCategorias();
     this.showCreate = false;
     this.showEdit = false;
     this.showComponent = true;
-    this.setDefaultOrder();
+    this.orderBy = 'asc';
   }
 
   setRefresh() {
-    this.setCloseCreate();
-    this.setCloseEdit();
-    this.setDefaultOrder();
-    this.getTemas();
+    this.showCreate = false;
+    this.showEdit = false;
+    this.showEditIndex = null;
+    this.orderBy = 'asc';
+    this.getCategorias();
   }
 
   setShowCreate(){
     this.showCreate = !this.showCreate;
-    this.setCloseEdit();
-  }
-
-  setCloseCreate() {
-    this.showCreate = false;
+    this.showEdit = false;
+    this.showEditIndex = null;
   }
 
   setShowEdit(index: number){
-    this.setCloseCreate();
+    this.showCreate = false;
     this.showEdit = !this.showEdit;
     this.showEditIndex = index;
     if (!this.showEdit) {
       this.showEditIndex = null;
     }
-  }
-
-  setCloseEdit() {
-    this.showEdit = false;
-    this.showEditIndex = null;
   }
 
   setViewComponent() {
@@ -80,17 +73,9 @@ export class AdminTemasComponent implements OnInit {
     }
   }
 
-  setDefaultOrder() {
-    this.orderBy = 'asc';
-  }
-
   exportAsExcel() {
-    const exportData = [];
-    this.temas.forEach(e => {
-      exportData.push({Nombre: e.nombre});
-    });
-    console.log(exportData);
-    this.exportExcelService.exportAsExcelFile(exportData, 'Temas');
+    const exportData = this.categorias;
+    this.exportExcelService.exportAsExcelFile(exportData, 'CategoriasEpis');
   }
 
   showSnackBar = (message: string, action: string) => {
@@ -99,26 +84,24 @@ export class AdminTemasComponent implements OnInit {
     });
   }
 
-  getTemas() {
-    this.restService.getTemas()
+  getCategorias() {
+    this.restService.getCategorias()
       .subscribe(data => {
-        this.temas = data;
-        console.log(this.temas);
-
+        this.categorias = data;
       });
   }
 
-  createTema(tema: string) {
-    const creatingTema = { nombre: tema};
+  createCategoria(categoria: string) {
+    const creatingCategoria = { nombre: categoria};
 
-    this.restService.createTema(creatingTema)
+    this.restService.createCategoria(creatingCategoria)
       .pipe(first())
       .subscribe(
         data => {
           if (data.status === 200) {
-            this.showSnackBar('Tema creado correctamente', '');
+            this.showSnackBar('Categoría creada correctamente', '');
             this.setShowCreate();
-            this.getTemas();
+            this.getCategorias();
           } else if (data.status !== 200) {
             this.showSnackBar('Ha ocurrido un error. Vuelva a intentarlo o inténtelo más tarde.', '');
           }
@@ -128,20 +111,20 @@ export class AdminTemasComponent implements OnInit {
         });
   }
 
-  editTema(id: number, updatedTema: string) {
-    const editedTema = {idTema: id, nombre: updatedTema};
+  editCategoria(id: number, updatedCategoria: string) {
+    const editedCategoria = {idCategoria: id, nombre: updatedCategoria};
 
-    this.restService.updateTema(editedTema)
+    this.restService.updateCategoria(editedCategoria)
       .pipe(first())
       .subscribe(
         data => {
           if (data.status === 200) {
-            this.showSnackBar('Tema actualizado correctamente', '');
-            this.getTemas();
+            this.showSnackBar('Categoría actualizada correctamente', '');
+            this.getCategorias();
             this.setShowEdit(this.showEditIndex);
           } else if (data.status !== 200) {
             this.showSnackBar('Ha ocurrido un error. Vuelva a intentarlo o inténtelo más tarde.', '');
-            this.getTemas();
+            this.getCategorias();
             this.setShowEdit(this.showEditIndex);
           }
         },
@@ -150,17 +133,17 @@ export class AdminTemasComponent implements OnInit {
         });
   }
 
-  deleteTema(tema: AdminTema) {
-    const dialogRef = this.dialog.open(DeleteTemaDialogComponent, {
+  deleteCategoria(categoria: CategEpis) {
+    const dialogRef = this.dialog.open(DeleteCategEpiDialogComponent, {
       data: {
-        datos: tema
+        datos: categoria
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'ELIMINADO'){
-        this.showSnackBar('Tema eliminado correctamente', '');
-        this.getTemas();
+        this.showSnackBar('Categoría eliminada correctamente', '');
+        this.getCategorias();
       } else if (result === 'CERRADO' || result === undefined) {
         this.showSnackBar('El usuario ha cancelado el proceso.', '');
       } else {
@@ -168,4 +151,5 @@ export class AdminTemasComponent implements OnInit {
       }
     });
   }
+
 }

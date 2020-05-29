@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Advertencia</h1>
+<div mat-dialog-content>
+  ¿Esta seguro que desea borrar la parte del cuerpo? {{ data.datos.nombre }}
+</div>
+<div mat-dialog-actions style="margin: 15px;">
+  <button mat-button (click)="onClickYes(data.datos)">Sí</button>
+  <button mat-button (click)="onClickNo()">No</button>
+</div>
+

@@ -1,0 +1,83 @@
+<app-header></app-header>
+<app-ng7-mat-breadcrumb></app-ng7-mat-breadcrumb>
+<main class="container-fluid" *ngIf="showComponent">
+    <div class="row">
+      <div class="col-12">
+        <div id="main">
+          <div class="row">
+            <div class="col-12">
+              <div class="subtitle">
+                <h2>Partes Cuerpo</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="button-container">
+                <ul>
+                  <li><button class="btn btn-primary" (click)="setViewComponent();">Atrás</button></li>
+                  <li><button class="btn btn-primary" (click)="setShowCreate(); newPartesCuerpo.value='' ">Añadir</button></li>
+                  <li><button class="btn btn-primary" (click)="setRefresh();">Refrescar</button></li>
+                  <li><button class="btn btn-primary" (click)="exportAsExcel();">Exportar a Excel</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row" [hidden]="!showCreate">
+            <div class="container">
+              <h3>Crear Partes Cuerpo</h3>
+              <div class=" create-container">
+                <input type="text" #newPartesCuerpo class="form-control">
+                <button class="fa fa-check" (click)="createPartesCuerpo(newPartesCuerpo.value);"></button>
+                <button class="fa fa-times" (click)="setRefresh();"></button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="table-container" style="width: 100%">
+              <table id="tablePartesCuerpo" class="table display nowrap">
+                <thead>
+                <tr>
+                  <th>
+                    Acciones
+                  </th>
+                  <th>
+                    <button *ngIf="orderBy === 'asc'" class="fa fa-arrow-down" (click)="setOrderBy();"></button>
+                    <button *ngIf="orderBy === 'desc'" class="fa fa-arrow-up" (click)="setOrderBy();"></button>
+                    Nombre
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let parteCuerpo of parteCuerpo | sortBy:orderBy:'nombre'; let i = index;" [attr.data-index]="i">
+                  <td style="width: 10%;" *ngIf="!showEdit && showEditIndex == null || showEditIndex != i">
+                    <button class="btn" (click)="setShowEdit(i);">
+                      <span data-toggle="tooltip" data-placement="top" title="Editar">
+                        <span class="fa fa-pencil" aria-hidden="true">
+                        </span>
+                      </span>
+                    </button>
+                    <button class="btn" (click)="deletePartesCuerpo(parteCuerpo);">
+                      <span data-toggle="tooltip" data-placement="top" title="Eliminar ">
+                        <span class="fa fa-times" aria-hidden="true">
+                        </span>
+                      </span>
+                    </button>
+                  </td>
+                  <td style="width: 10%;" *ngIf="showEdit && showEditIndex == null || showEditIndex == i">
+                  </td>
+                  <td class="editableRow" style="width: 90%;">
+                    <input type="text" #updatedPartesCuerpo [disabled]="!showEdit && showEditIndex == null || showEditIndex != i" [value]="parteCuerpo.nombre | uppercase" style="width: 85%;">
+                    <button class="fa fa-check" *ngIf="showEdit && showEditIndex == null || showEditIndex == i" style="margin-left: 5px;" (click)="editPartesCuerpo(parteCuerpo.idParteCuerpo , updatedPartesCuerpo.value);"></button>
+                    <button class="fa fa-times" *ngIf="showEdit && showEditIndex == null || showEditIndex == i" style="margin-left: 5px;" (click)="setRefresh()"></button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
+    

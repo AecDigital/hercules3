@@ -40,7 +40,7 @@ export class LoginPageComponent implements OnInit {
   });
 
   // get return url from route parameters or default to '/'
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'herramientas/admin/datos-maestros/temas';
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'herramientas/administracion/datos-maestros/temas';
 }
 
 // convenience getter for easy access to form fields

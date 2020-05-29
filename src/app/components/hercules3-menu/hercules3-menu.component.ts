@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { MenuItems } from '../../shared/constants/h3MenuItems';
@@ -14,6 +15,9 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 
 export class Hercules3MenuComponent implements OnInit, AfterViewInit {
 
+  @Output()
+  closeSidebar = new EventEmitter<boolean>();
+
   session: any;
   TREE_DATA: MenuItem[] = [];
   private _transformer = (node: MenuItem, level: number) => {
@@ -21,6 +25,7 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
       expandable: !!node.children && node.children.length > 0,
       name: node.label,
       level: level,
+      linkTo: node.linkTo
     };
   }
 
@@ -32,7 +37,7 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private authentication: AuthenticationService) { }
+  constructor(private authentication: AuthenticationService, private router: Router) { }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
@@ -66,13 +71,26 @@ private menuBuilder = (userRol: number) => {
   });
   this.dataSource.data = this.TREE_DATA;
 };
+
+itemNavigateTo(url: string) {
+  console.log('hello');
+  this.closeSidebar.emit(true);
+  window.scroll(0,0);
+  this.router.navigate([`${url}`])
+  let test: any;
+  this.router.events.subscribe(evnt => test = evnt);
+  console.log(test);
 }
+
+}
+
 
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
   expandable: boolean;
   name: string;
   level: number;
+  linkTo: string
 }
 
 
