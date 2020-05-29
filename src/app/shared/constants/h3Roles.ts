@@ -3,7 +3,7 @@ import { userRol } from '../interfaces/user-roles';
 export const Roles: userRol[] = [
     {
         id: 0,
-        rolName: 'Todos'
+        rolName: 'Básico'
     },
     {
         id: 1,

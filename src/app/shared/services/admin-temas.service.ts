@@ -23,6 +23,7 @@ export class AdminTemasService {
   }
 
   deleteTema(id: string): Observable<Rest> {
-    return this.http.delete<Rest>(this.baseUrl + `mantenimientos/temas/${id}`, {observe: 'response'});
+    return this.http.delete<Rest>(this.baseUrl + `mantenimientos/temas/${id}`, { observe: 'response' });
   }
+
 }

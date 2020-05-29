@@ -4,14 +4,17 @@
   [treeControl]="treeControl"
 >
   <!-- This is the tree node template for leaf nodes -->
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+  <mat-tree-node 
+  *matTreeNodeDef="let node"
+  matTreeNodePadding>
     <!-- use a disabled button to provide padding for tree leaf -->
     <button 
     mat-icon-button 
     disabled
     [disableRipple]="true"
     ></button>
-        {{ node.name }}
+        <div [ngClass] = "{ 'active-node': treeControl.isExpanded(node) === true }"
+        >{{ node.name }}</div>
   </mat-tree-node>
   <!-- This is the tree node template for expandable nodes -->
   <mat-tree-node style="margin-left: 0px;" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
@@ -20,14 +23,14 @@
     matTreeNodeToggle
     [disableRipple]="true"
     [attr.aria-label]="'toggle ' + node.name"
+    [ngClass] = "{ 'active-node': treeControl.isExpanded(node) === true }"
   >
     <mat-icon class="mat-icon-rtl-mirror">
       {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
     </mat-icon>
   </button>
-    <div style="margin-left: 0px;">
-        {{ node.name }}
-    </div>
+  <div [ngClass] = "{ 'active-node': treeControl.isExpanded(node) === true }" style = "margin-left: 0px;"
+  >{{ node.name }}</div>
 
   </mat-tree-node>
 </mat-tree>

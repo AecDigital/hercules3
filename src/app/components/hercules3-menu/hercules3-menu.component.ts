@@ -42,7 +42,7 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.session = JSON.parse(sessionStorage.getItem("session"));
-    if (this.session.usuario) {
+    if (this.session) {
       this.menuBuilder(this.session.usuario.rol);
     }
   }
