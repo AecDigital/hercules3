@@ -1,0 +1,35 @@
+<div *ngIf="searchType === 'Clientes'" class="form-group">
+    <label>Cliente</label>
+    <div class="form-group mb-2">
+        <select class="form-control">
+            <option *ngFor="let item of data">{{ item.idCliente }} - {{ item.nombre }}</option>
+          </select>
+    </div>
+</div>
+<div *ngIf="searchType === 'Clientes'" class="form-group form-inline">
+  <p>Proyectos:</p>
+</div>
+
+<div *ngIf="searchType === 'Ofertas'">
+    <p>Ofertas:</p>
+    <mat-accordion>
+        <mat-expansion-panel  class="mat-elevation-z0" style="margin-bottom: 10px;" *ngFor="let item of data">
+          <mat-expansion-panel-header style="background-color: #EEEEEE !important; color: black;">
+            <mat-panel-title style="background-color: #EEEEEE !important; color: black;">
+              {{ item.nombre }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel *ngFor="let child of item.children">
+            <mat-expansion-panel-header style="background-color: white !important; color: black;">
+              <mat-panel-title style="background-color: white !important; color: black;">
+                {{ child.nombre }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div *ngFor="let childLevel2 of child.children">
+                <mat-checkbox (click)="makeSelection(childLevel2.idOferta)">Oferta {{ childLevel2.idOferta }}</mat-checkbox>
+            </div>
+          </mat-expansion-panel>
+        </mat-expansion-panel>
+        </mat-accordion>
+        <button (click)="confirm()">Confirm</button>
+</div>

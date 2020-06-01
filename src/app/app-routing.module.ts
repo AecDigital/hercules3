@@ -4,10 +4,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthGuardService } from './shared/services/auth-guard-service.service';
 import { HerramientasModule } from '../app/h3-modules/herramientas/herramientas.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ConsultaRiesgosComponent } from './components/consulta-riesgos/consulta-riesgos.component';
 
 const routes: Routes = [
   
   { path: 'login', component: LoginPageComponent },
+  { path: 'consulta-riesgos', component: ConsultaRiesgosComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'herramientas',

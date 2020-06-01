@@ -15,7 +15,7 @@ export class AuthenticationService {
   public user: Observable<any>;
   publicUser: String = '';
   // public apiUrl: string = 'https://next.json-generator.com/api/json/get/4kOt_ewou'
-  public apiUrl: string = '/EulenPRL/rest/autentication'
+  public apiUrl: string = '/EulenPRL/rest/login'
 
   constructor(private router: Router, private http: HttpClient) {
     this.userSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('user')));
@@ -34,9 +34,9 @@ export class AuthenticationService {
     return this.http.post<any>(`${this.apiUrl}`, { ...payload })
       .pipe(map(user => {
         // store user details and jwt token in session storage to keep user logged in between page refreshes
-        sessionStorage.setItem('session', JSON.stringify(user.map));
-        this.userSubject.next(user.map);
-        return user.map;
+        sessionStorage.setItem('session', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
       }));
   }
 

@@ -1,0 +1,39 @@
+<app-header></app-header>
+<app-ng7-mat-breadcrumb></app-ng7-mat-breadcrumb>
+
+<mat-accordion>
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header class="disable_ripple">
+        <mat-panel-title>
+          Filtros de búsqueda
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <div class="container">
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col" style="display: flex; flex-direction: row;">
+                <p>Tipo:</p>
+                <p>Nacional</p>
+                <p>Cliente</p>
+              </div>
+            </div>
+        <div class="row">
+          <div class="col-3">
+            <app-risk-form></app-risk-form>
+          </div>
+          <div class="col">
+              <app-h3-filter-box [filterType]="'Clientes'"></app-h3-filter-box>
+            </div>
+          <div class="col">
+            <app-h3-filter-box [filterType]="'Ofertas'"></app-h3-filter-box>
+          </div>
+          <div class="col">
+            <app-h3-filter-box [filterType]="'Empresas'"></app-h3-filter-box>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    </mat-accordion>
+

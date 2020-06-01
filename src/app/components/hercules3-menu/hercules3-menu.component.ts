@@ -73,13 +73,11 @@ private menuBuilder = (userRol: number) => {
 };
 
 itemNavigateTo(url: string) {
-  console.log('hello');
   this.closeSidebar.emit(true);
   window.scroll(0,0);
   this.router.navigate([`${url}`])
   let test: any;
   this.router.events.subscribe(evnt => test = evnt);
-  console.log(test);
 }
 
 }

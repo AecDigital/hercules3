@@ -19,6 +19,7 @@ import { H3Interceptor } from './shared/interceptors/h3.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeleteTemaDialogComponent } from './components/dialogs/delete-tema-dialog/delete-tema-dialog.component';
+import { EditTemasDialogComponent } from './components/dialogs/edit-temas-dialog/edit-temas-dialog.component';
 import { SortByPipe } from './shared/pipes/sort-by.pipe';
 import { Hercules3SidebarComponent } from './components/hercules3-sidebar/hercules3-sidebar.component';
 
@@ -29,13 +30,16 @@ import { HerramientasModule } from '../app/h3-modules/herramientas/herramientas.
 // Angular Material...
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EditTemasDialogComponent } from './components/dialogs/edit-temas-dialog/edit-temas-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatRippleModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 
 // Breadcrumbs library
 import { Ng7MatBreadcrumbModule } from "ng7-mat-breadcrumb";
@@ -43,6 +47,10 @@ import { Ng7MatBreadcrumbModule } from "ng7-mat-breadcrumb";
 
 import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-menu.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ConsultaRiesgosComponent } from './components/consulta-riesgos/consulta-riesgos.component';
+import { RiskFormComponent } from './components/risk-form/risk-form.component';
+import { H3FilterBoxComponent } from './components/h3-filter-box/h3-filter-box.component';
+import { H3SearchDialogComponent } from './components/h3-search-dialog/h3-search-dialog.component';
 
 
 @NgModule({
@@ -62,7 +70,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     Hercules3MenuComponent,
     AdminPartesCuerpoComponent,
     CategEpisComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ConsultaRiesgosComponent,
+    RiskFormComponent,
+    H3FilterBoxComponent,
+    H3SearchDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +90,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatTreeModule,
     MatRippleModule,
     Ng7MatBreadcrumbModule,
-    HerramientasModule
+    HerramientasModule,
+    MatExpansionModule,
+    MatCheckboxModule
   ],
   providers: [AdminTemasService, AuthenticationService, AuthGuardService, AdminPartesCuerpoService, {
     provide: HTTP_INTERCEPTORS,
