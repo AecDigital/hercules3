@@ -12,14 +12,15 @@ export class H3FilterBoxService {
     private http: HttpClient
   ) { }
 
-  getCustomers = () => {
-    return this.http.get(this.baseUrl + '/clientes/clientes', { observe: 'response' });
+  getOptions = (searchType: string) => {
+    console.log(searchType);
+    switch (searchType) {
+    case 'Clientes':
+      return this.http.get(this.baseUrl + '/clientes/clientes', { observe: 'response' });
+    case 'Ofertas':
+      return this.http.get(this.baseUrl + '/consultas/consultaOfertas', { observe: 'response'});
+    case 'Empresas':
+      return this.http.get(this.baseUrl + '/consultas/consultaEmpresas', { observe: 'response'});
+  }
 }
-  getProposals = () => {
-    return this.http.get(this.baseUrl + '/consultas/consultaOfertas', { observe: 'response'});
-  }
-
-  getCompanies = () => {
-    return this.http.get(this.baseUrl + '/consultas/consultaEmpresas', { observe: 'response'});
-  }
 }

@@ -1,0 +1,90 @@
+<div mat-dialog-content *ngIf="dataSource">
+  <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+    <span class="material-icons closeIcon">
+      close
+    </span>
+  </div>
+
+  <p mat-dialog-title style="margin-bottom: 20px;">Ofertas:</p>
+
+  <mat-tree
+    class="dialog"
+    [dataSource]="dataSource"
+    [treeControl]="treeControl"
+  >
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      matTreeNodeToggle
+      matTreeNodePadding
+      matTreeNodePaddingIndent="20"
+    >
+      <button mat-icon-button disabled></button>
+      <mat-checkbox
+        class="checklist-leaf-node"
+        [checked]="checklistSelection.isSelected(node)"
+        (change)="todoLeafItemSelectionToggle(node)"
+        >{{ node.nombre }}</mat-checkbox
+      >
+    </mat-tree-node>
+
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasNoContent"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="70"
+    >
+      <button mat-icon-button disabled [disableRipple]="true"></button>
+    </mat-tree-node>
+
+    <mat-tree-node
+      *matTreeNodeDef="let node; when: hasChild"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="70"
+    >
+      <button
+        mat-icon-button
+        matTreeNodeToggle
+        [attr.aria-label]="'toggle ' + node.nombre"
+        [disableRipple]="true"
+      >
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+        </mat-icon>
+      </button>
+      <mat-checkbox
+        [checked]="descendantsAllSelected(node)"
+        [indeterminate]="descendantsPartiallySelected(node)"
+        (change)="todoItemSelectionToggle(node)"
+        >{{ node.nombre }}</mat-checkbox
+      >
+    </mat-tree-node>
+  </mat-tree>
+</div>
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 25px;
+  "
+  mat-dialog-actions
+  *ngIf="dataSource"
+>
+  <button
+    mat-button
+    mat-dialog-close
+    mat-raised-button
+    color="primary"
+    (click)="confirm()"
+  >
+    Aceptar
+  </button>
+  <button
+    mat-button
+    mat-dialog-close
+    mat-raised-button
+    color="warn"
+    (click)="confirm()"
+  >
+    Cancelar
+  </button>
+</div>

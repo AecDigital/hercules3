@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { H3SearchDialogComponent } from '../h3-search-dialog/h3-search-dialog.component';
+import { H3SearchTreeDialogComponent } from '../h3-search-tree-dialog/h3-search-tree-dialog.component';
 
 
 @Component({
@@ -14,32 +15,28 @@ import { H3SearchDialogComponent } from '../h3-search-dialog/h3-search-dialog.co
     },
   ]
 })
-export class H3FilterBoxComponent implements OnInit, OnChanges {
+export class H3FilterBoxComponent implements OnInit {
   @Input()
   filterType: string = '';
+  selectedOptions: Array<string> = [];
 
-  constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<H3SearchDialogComponent>) { }
+  constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<H3SearchTreeDialogComponent>) { }
 
   ngOnInit(): void {
   }
 
-  ngOnChanges() {
-    console.log(this.filterType);
-  }
-
   openSearchDialog(searchType: string) {
-    const dialogRef = this.dialog.open(H3SearchDialogComponent, {
+    this.selectedOptions = [];
+    const dialogRef = this.dialog.open(H3SearchTreeDialogComponent, {
       data: {
         searchType: searchType
       }
     });
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.data = {
-    //   searchType: searchType
-    // };
-    // this.dialog.open(H3SearchDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(res => {
-      console.log(res.data) // received data from confirm-component
+      if (res) {
+      this.selectedOptions = res.data;
+      console.log(this.selectedOptions) // received data from confirm-component
+      }
     })
   }
 }

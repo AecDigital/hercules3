@@ -51,6 +51,7 @@ import { ConsultaRiesgosComponent } from './components/consulta-riesgos/consulta
 import { RiskFormComponent } from './components/risk-form/risk-form.component';
 import { H3FilterBoxComponent } from './components/h3-filter-box/h3-filter-box.component';
 import { H3SearchDialogComponent } from './components/h3-search-dialog/h3-search-dialog.component';
+import { H3SearchTreeDialogComponent } from './components/h3-search-tree-dialog/h3-search-tree-dialog.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { H3SearchDialogComponent } from './components/h3-search-dialog/h3-search
     ConsultaRiesgosComponent,
     RiskFormComponent,
     H3FilterBoxComponent,
-    H3SearchDialogComponent
+    H3SearchDialogComponent,
+    H3SearchTreeDialogComponent
   ],
   imports: [
     BrowserModule,

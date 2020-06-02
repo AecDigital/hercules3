@@ -1,0 +1,17 @@
+.mat-tree-node, .mat-nested-tree-node {
+    padding-left: 20px;
+    height: 10px;
+    background-color: white !important;
+    color: black !important;
+    outline: none;
+    *:focus {outline:none !important}
+}
+
+.material-icons {
+    margin-left: 2px !important;
+}
+
+.mat-tree-node.cdk-tree-node.ng-star-inserted {
+    padding-left: 20px !important;
+    *:focus {outline:none !important}
+}
