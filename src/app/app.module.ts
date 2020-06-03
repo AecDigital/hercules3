@@ -44,6 +44,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 // Breadcrumbs library
 import { Ng7MatBreadcrumbModule } from "ng7-mat-breadcrumb";
 
+// Ng-Select library
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 import { Hercules3MenuComponent } from './components/hercules3-menu/hercules3-menu.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -52,6 +55,7 @@ import { RiskFormComponent } from './components/risk-form/risk-form.component';
 import { H3FilterBoxComponent } from './components/h3-filter-box/h3-filter-box.component';
 import { H3SearchDialogComponent } from './components/h3-search-dialog/h3-search-dialog.component';
 import { H3SearchTreeDialogComponent } from './components/h3-search-tree-dialog/h3-search-tree-dialog.component';
+import { RiskTableComponent } from './components/risk-table/risk-table.component';
 
 
 @NgModule({
@@ -76,7 +80,8 @@ import { H3SearchTreeDialogComponent } from './components/h3-search-tree-dialog/
     RiskFormComponent,
     H3FilterBoxComponent,
     H3SearchDialogComponent,
-    H3SearchTreeDialogComponent
+    H3SearchTreeDialogComponent,
+    RiskTableComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,8 @@ import { H3SearchTreeDialogComponent } from './components/h3-search-tree-dialog/
     Ng7MatBreadcrumbModule,
     HerramientasModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgSelectModule
   ],
   providers: [AdminTemasService, AuthenticationService, AuthGuardService, AdminPartesCuerpoService, {
     provide: HTTP_INTERCEPTORS,

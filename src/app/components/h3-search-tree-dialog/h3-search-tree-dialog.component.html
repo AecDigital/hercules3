@@ -1,4 +1,4 @@
-<div mat-dialog-content *ngIf="dataSource">
+<div mat-dialog-content *ngIf="dataSource.data.length > 0">
   <div style="display: flex; flex-direction: row; justify-content: flex-end;">
     <span mat-dialog-close
     style="cursor:pointer" class="material-icons closeIcon">
@@ -70,7 +70,7 @@
     margin-top: 25px;
   "
   mat-dialog-actions
-  *ngIf="dataSource"
+  *ngIf="dataSource.data.length > 0"
 >
   <button
     mat-button
@@ -85,8 +85,7 @@
     mat-button
     mat-dialog-close
     mat-raised-button
-    color="warn"
-    (click)="confirm()"
+    color="primary"
   >
     Cancelar
   </button>

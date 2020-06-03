@@ -1,33 +1,43 @@
-<div>
-<p *ngIf="filterType === 'Clientes'">Cliente / Proyecto</p>
-<p *ngIf="filterType === 'Ofertas'">Ofertas</p>
-<p *ngIf="filterType === 'Empresas'">Empresa / Oficina</p>
-
-<div class="form-check" style="display: flex; flex-direction: row; justify-content: space-between">
-    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-    <label class="form-check-label" for="defaultCheck1">
-      Todos
-    </label>
-    <div (click)="openSearchDialog(filterType)"><span style="cursor: pointer" class="material-icons">
-        search
-        </span></div>
+<div style="margin-top: 20px;">
+  <div style="color: #172b68; font-weight: 450;">
+    <p *ngIf="filterType === 'Clientes'">Cliente / Proyecto</p>
+    <p *ngIf="filterType === 'Ofertas'">Ofertas</p>
+    <p *ngIf="filterType === 'Empresas'">Empresa / Oficina</p>
   </div>
 
-  <div style="border: 2px solid #EBEDF0; float:left;
-  width:250px;
-  overflow-y: auto;
-  height: 200px;">
+  <div
+    style="display: flex; flex-direction: row; justify-content: space-between;"
+  >
+    <mat-checkbox>Todos</mat-checkbox>
+    <div (click)="openSearchDialog(filterType)">
+      <span style="cursor: pointer; color: #ccc" class="material-icons">
+        search
+      </span>
+    </div>
+  </div>
+
+  <div
+    style="
+      border: 1px solid #ccc;
+      float: left;
+      width: 250px;
+      overflow-y: auto;
+      height: 200px;
+    "
+  >
     <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let option of selectedOptions">
-            <th *ngIf="filterType === 'Ofertas'" scope="row">{{ option.nombre }}</th>
-          </tr>
-        </tbody>
-      </table>
-</div>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let option of selectedOptions">
+          <th *ngIf="filterType === 'Ofertas'" scope="row">
+            {{ option.nombre }}
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
