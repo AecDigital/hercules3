@@ -25,7 +25,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let option of selectedOptions">
-            <th *ngIf="filterType === 'Ofertas'" scope="row">{{ option }}</th>
+            <th *ngIf="filterType === 'Ofertas'" scope="row">{{ option.nombre }}</th>
           </tr>
         </tbody>
       </table>

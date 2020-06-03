@@ -21,14 +21,6 @@ export class TodoItemFlatNode {
   expandable: boolean;
 }
 
-export class TreeNode {
-  children: Array<any>;
-  idProvincia: number;
-  nombre: string;
-  level: number;
-  expandable: boolean;
-}
-
 @Injectable()
 export class ChecklistDatabase {
   searchType: string;
@@ -49,9 +41,7 @@ export class ChecklistDatabase {
   getSearchOptions = (searchType: string) => {
     console.log(this.searchType);
       this.filterBox.getOptions(searchType).subscribe(res => {
-        console.log(res.body);
         this.tempData = res.body;
-        console.log(this.tempData);
         this.dataChange.next(this.tempData);        
       })
     }
@@ -205,26 +195,8 @@ export class H3SearchTreeDialogComponent {
    return null;
  }
 
- makeSelection = (selectedProvincia, selectedTema?: string, selectedOferta?: string) => {
-  console.log(selectedProvincia, selectedTema, selectedOferta);
-  let provincia = this.dataSource.data.filter(e => e.idProvincia === selectedProvincia)
-  console.log(provincia)
-  if (selectedOferta) {
-    this.optionsSelected.push(selectedOferta)
-  } else if (selectedTema) {
-    let tema = provincia[0].children.filter(f => f.nombre === selectedTema)
-     tema[0].children.map(g => { 
-       this.optionsSelected.push(g.nombre)
-       console.log(this.optionsSelected);
-      })
-  } else {
-    provincia[0].children.map(f => f.children.map(g => {
-    this.optionsSelected.push(g.nombre)}));
-    console.log(this.optionsSelected);
-  }
-}
 
 confirm() {
-  this.dialogRef.close({ data: this.optionsSelected }) // send data to parent component
+  this.dialogRef.close({ data: this.checklistSelection.selected.filter(e => e.level === 2) }) // send data to parent component
 }
 }

@@ -1,6 +1,7 @@
 <div mat-dialog-content *ngIf="dataSource">
   <div style="display: flex; flex-direction: row; justify-content: flex-end;">
-    <span class="material-icons closeIcon">
+    <span mat-dialog-close
+    style="cursor:pointer" class="material-icons closeIcon">
       close
     </span>
   </div>
@@ -40,6 +41,7 @@
       matTreeNodePadding
       matTreeNodePaddingIndent="70"
     >
+    <div style="display: flex; flex-direction: row; align-items: center;">
       <button
         mat-icon-button
         matTreeNodeToggle
@@ -56,6 +58,7 @@
         (change)="todoItemSelectionToggle(node)"
         >{{ node.nombre }}</mat-checkbox
       >
+    </div>
     </mat-tree-node>
   </mat-tree>
 </div>
