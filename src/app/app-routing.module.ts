@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'herramientas',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     
     loadChildren: () => import('../app/h3-modules/herramientas/herramientas.module')
     .then(m => m.HerramientasModule)

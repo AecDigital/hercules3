@@ -13,7 +13,7 @@
     disabled
     [disableRipple]="true"
     ></button>
-        <div style="cursor: pointer;" [routerLink]="node.linkTo" [ngClass] = "{ 'active-node': treeControl.isExpanded(node) === true }"
+        <div style="cursor: pointer;" (click)="itemNavigateTo(node.linkTo)" [ngClass] = "{ 'active-node': treeControl.isExpanded(node) === true }"
         >{{ node.name }}</div>
   </mat-tree-node>
   <!-- This is the tree node template for expandable nodes -->
