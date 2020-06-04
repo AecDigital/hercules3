@@ -54,7 +54,7 @@ export class Hercules3MenuComponent implements OnInit, AfterViewInit {
 
 // Build method for menu items depending on user session rol
 private menuBuilder = (userRol: number) => {
-  MenuItems.map(e => {
+  MenuItems.forEach(e => {
     if (e.rol === 0 || userRol >= e.rol) {
       this.TREE_DATA.push(e);
     }
@@ -62,7 +62,7 @@ private menuBuilder = (userRol: number) => {
   this.TREE_DATA.forEach(menuItem => { 
     if (menuItem.children) {
       menuItem.children = menuItem.children.filter(subMenuItem => userRol >= subMenuItem.rol);
-      menuItem.children.map(subMenuItem => {
+      menuItem.children.forEach(subMenuItem => {
         if (subMenuItem.children) {
           subMenuItem.children = subMenuItem.children.filter(item => userRol >= item.rol)
         }

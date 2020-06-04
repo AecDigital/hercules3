@@ -1,5 +1,5 @@
-.mat-tree-node, .mat-nested-tree-node {
-    padding-left: 20px;
+.mat-tree-node {
+    // padding-left: 20px;
     height: 20px;
     background-color: white !important;
     color: black !important;
@@ -11,11 +11,29 @@
     margin-left: 2px !important;
 }
 
-.mat-tree-node.cdk-tree-node.ng-star-inserted {
-    padding-left: 20px !important;
-    *:focus {outline:none !important}
-}
+// .mat-tree-node.cdk-tree-node.ng-star-inserted {
+//     padding-left: 5px !important;
+//     *:focus {outline:none !important}
+// }
 
 .mat-primary {
     background-color: #00A9E0;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: #00A9E0!important;
+  }
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #00A9E0;
+  }
+
+.span {
+    color: black
+}
+
+.ng-select {
+    width: 100%;
+    margin-left: 10px;
 }

@@ -22,6 +22,7 @@ import { DeleteTemaDialogComponent } from './components/dialogs/delete-tema-dial
 import { EditTemasDialogComponent } from './components/dialogs/edit-temas-dialog/edit-temas-dialog.component';
 import { SortByPipe } from './shared/pipes/sort-by.pipe';
 import { Hercules3SidebarComponent } from './components/hercules3-sidebar/hercules3-sidebar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // H3 modules...
@@ -29,7 +30,6 @@ import { HerramientasModule } from '../app/h3-modules/herramientas/herramientas.
 
 // Angular Material...
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -37,7 +37,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+
+
 
 
 
@@ -100,7 +104,12 @@ import { RiskTableComponent } from './components/risk-table/risk-table.component
     HerramientasModule,
     MatExpansionModule,
     MatCheckboxModule,
-    NgSelectModule
+    NgSelectModule,
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule
+
   ],
   providers: [AdminTemasService, AuthenticationService, AuthGuardService, AdminPartesCuerpoService, {
     provide: HTTP_INTERCEPTORS,

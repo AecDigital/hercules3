@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserPageComponent } from '../../pages/user-page/user-page.component';
 import { AdminPartesCuerpoComponent } from '../../components/admin-partes-cuerpo/admin-partes-cuerpo.component';
 import { CategEpisComponent } from '../../components/categ-epis/categ-epis.component';
-
+import { HerramientasHomeComponent } from './herramientas-home/herramientas-home.component'
 
 
 const routes: Routes = [
   { 
-    path: 'administracion', 
+    path: 'administracion', component: HerramientasHomeComponent,
   data: {
     title: 'Administración',
     breadcrumb: [

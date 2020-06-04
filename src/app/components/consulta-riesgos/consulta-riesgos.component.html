@@ -1,41 +1,70 @@
 <app-header></app-header>
 <app-ng7-mat-breadcrumb></app-ng7-mat-breadcrumb>
 
-<mat-accordion>
-    <mat-expansion-panel class="mat-elevation-z0">
-      <mat-expansion-panel-header class="disable_ripple">
-        <mat-panel-title>
-          Filtros de búsqueda
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-  
-      <div class="container">
-        <div class="row">
-            <div class="col-3">
-            </div>
-            <div class="col-8" style="display: flex; flex-direction: row; align-items: center">
-                Tipo:
-                <div style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 20px">
-                  <mat-checkbox>Nacional</mat-checkbox> 
-                  <mat-checkbox>Cliente</mat-checkbox> 
+<div style="width: 100%; margin-top: 20px;">
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header class="disable_ripple">
+          <mat-panel-title>
+            Filtros de búsqueda
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+    
+        <div class="container">
+          <div class="row">
+              <div class="col-3">
+              </div>
+              <div class="col-8" style="display: flex; flex-direction: row; align-items: center">
+                  Tipo:
+                  <div style="display: flex; flex-direction: row; justify-content: space-between; margin-right: 20px">
+                    <mat-checkbox>Nacional</mat-checkbox> 
+                    <mat-checkbox>Cliente</mat-checkbox> 
+                  </div>
                 </div>
               </div>
+          <div class="row">
+            <div class="col-3">
+              <app-risk-form></app-risk-form>
             </div>
-        <div class="row">
-          <div class="col-3">
-            <app-risk-form></app-risk-form>
-          </div>
-          <div class="col">
-              <app-h3-filter-box [filterType]="'Clientes'"></app-h3-filter-box>
+            <div class="col">
+                <app-h3-filter-box [filterType]="'Clientes'"></app-h3-filter-box>
+              </div>
+            <div class="col">
+              <app-h3-filter-box [filterType]="'Ofertas'"></app-h3-filter-box>
             </div>
-          <div class="col">
-            <app-h3-filter-box [filterType]="'Ofertas'"></app-h3-filter-box>
-          </div>
-          <div class="col">
-            <app-h3-filter-box [filterType]="'Empresas'"></app-h3-filter-box>
+            <div class="col">
+              <app-h3-filter-box [filterType]="'Empresas'"></app-h3-filter-box>
+            </div>
           </div>
         </div>
-      </div>
-    </mat-expansion-panel>
-    </mat-accordion>
+        <div mat-dialog-actions style="display: flex; flex-direction: row; justify-content: flex-end; margin-right: 15px; padding: 15px;">
+          <button
+          mat-button
+          mat-dialog-close
+          mat-raised-button
+          color="primary"
+        >
+          Buscar
+        </button>
+        <button
+          mat-button
+          mat-dialog-close
+          mat-raised-button
+          color="primary"
+        >
+          Limpiar
+        </button>
+        </div>
+    
+      </mat-expansion-panel>
+  
+     
+  
+      <app-risk-table></app-risk-table>
+  
+      </mat-accordion>
+  
+</div>
+
+
 

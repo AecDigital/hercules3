@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RiskFormComponent implements OnInit {
   riskForm: FormGroup
-
+  items = ['1', '2', '3'];
   constructor(private formBuilder: FormBuilder,
     ) { }
 
@@ -24,4 +24,8 @@ export class RiskFormComponent implements OnInit {
   });
   }
 
+  doSomething() {
+    console.log('Hola')
+    console.log(this.riskForm.value);
+  }
 }

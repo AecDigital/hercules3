@@ -1,14 +1,56 @@
-<div mat-dialog-content *ngIf="dataSource.data.length > 0">
+<div
+  mat-dialog-content
+  *ngIf="dataSource.data.length > 0 || selectOptions.length > 0"
+>
   <div style="display: flex; flex-direction: row; justify-content: flex-end;">
-    <span mat-dialog-close
-    style="cursor:pointer" class="material-icons closeIcon">
+    <span
+      mat-dialog-close
+      style="cursor: pointer;"
+      class="material-icons closeIcon"
+    >
       close
     </span>
   </div>
 
-  <p mat-dialog-title style="margin-bottom: 20px;">Ofertas:</p>
+  <p
+    *ngIf="searchType === 'Ofertas'"
+    mat-dialog-title
+    style="margin-bottom: 10px;"
+  >
+    Ofertas:
+  </p>
+  <div *ngIf="searchType === 'Empresas'" style="margin-top: 20px;">
+    <p mat-dialog-title style="margin-bottom: 10px;">Empresa:</p>
+    <ng-select
+      id="cliente"
+      name="cliente"
+      [items]="selectOptions"
+      [(ngModel)]="selectedOption"
+      (change)="onChangeSelectedOption(selectedOption)"
+    >
+      <ng-template ng-label-tmp let-item="item">
+        <span>{{ item.nombre }}</span>
+      </ng-template>
+      <ng-template
+        ng-option-tmp
+        let-item="item"
+        let-index="index"
+        style="border: none;"
+      >
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">{{ item.nombre }}</div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-select>
+  </div>
+
+  <div *ngIf="dataSource.data.length === 0" style="height: 300px;"></div>
 
   <mat-tree
+    *ngIf="dataSource"
+    style="margin-top: 20px;"
     class="dialog"
     [dataSource]="dataSource"
     [treeControl]="treeControl"
@@ -17,7 +59,6 @@
       *matTreeNodeDef="let node"
       matTreeNodeToggle
       matTreeNodePadding
-      matTreeNodePaddingIndent="20"
     >
       <button mat-icon-button disabled></button>
       <mat-checkbox
@@ -31,7 +72,6 @@
     <mat-tree-node
       *matTreeNodeDef="let node; when: hasNoContent"
       matTreeNodePadding
-      matTreeNodePaddingIndent="70"
     >
       <button mat-icon-button disabled [disableRipple]="true"></button>
     </mat-tree-node>
@@ -39,29 +79,29 @@
     <mat-tree-node
       *matTreeNodeDef="let node; when: hasChild"
       matTreeNodePadding
-      matTreeNodePaddingIndent="70"
     >
-    <div style="display: flex; flex-direction: row; align-items: center;">
-      <button
-        mat-icon-button
-        matTreeNodeToggle
-        [attr.aria-label]="'toggle ' + node.nombre"
-        [disableRipple]="true"
-      >
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
-        </mat-icon>
-      </button>
-      <mat-checkbox
-        [checked]="descendantsAllSelected(node)"
-        [indeterminate]="descendantsPartiallySelected(node)"
-        (change)="todoItemSelectionToggle(node)"
-        >{{ node.nombre }}</mat-checkbox
-      >
-    </div>
+      <div style="display: flex; flex-direction: row; align-items: center;">
+        <button
+          mat-icon-button
+          matTreeNodeToggle
+          [attr.aria-label]="'toggle ' + node.nombre"
+          [disableRipple]="true"
+        >
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+          </mat-icon>
+        </button>
+        <mat-checkbox
+          [checked]="descendantsAllSelected(node)"
+          [indeterminate]="descendantsPartiallySelected(node)"
+          (change)="todoItemSelectionToggle(node)"
+          >{{ node.nombre }}</mat-checkbox
+        >
+      </div>
     </mat-tree-node>
   </mat-tree>
 </div>
+
 <div
   style="
     display: flex;
@@ -81,12 +121,7 @@
   >
     Aceptar
   </button>
-  <button
-    mat-button
-    mat-dialog-close
-    mat-raised-button
-    color="primary"
-  >
+  <button mat-button mat-dialog-close mat-raised-button color="primary">
     Cancelar
   </button>
 </div>

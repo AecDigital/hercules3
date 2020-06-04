@@ -13,14 +13,16 @@ export class H3FilterBoxService {
   ) { }
 
   getOptions = (searchType: string) => {
-    console.log(searchType);
     switch (searchType) {
     case 'Clientes':
       return this.http.get(this.baseUrl + '/clientes/clientes', { observe: 'response' });
     case 'Ofertas':
       return this.http.get(this.baseUrl + '/consultas/consultaOfertas', { observe: 'response'});
     case 'Empresas':
-      return this.http.get(this.baseUrl + '/consultas/consultaEmpresas', { observe: 'response'});
+      return this.http.get(this.baseUrl + '/mantenimientos/empresas', { observe: 'response'});
   }
 }
+  getEmpresa = (idEmpresa) => {
+    return this.http.get(this.baseUrl + `/consultas/consultaEmpresas/${idEmpresa}`, { observe: 'response' });
+  }
 }

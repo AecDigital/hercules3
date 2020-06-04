@@ -7,16 +7,18 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ConsultaRiesgosComponent } from './components/consulta-riesgos/consulta-riesgos.component';
 
 const routes: Routes = [
-  
-  { path: 'login', component: LoginPageComponent },
-  { path: 'consulta-riesgos', component: ConsultaRiesgosComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'herramientas',
-    canActivate: [AuthGuardService],
-    loadChildren: () => HerramientasModule
+    // canActivate: [AuthGuardService],
+    
+    loadChildren: () => import('../app/h3-modules/herramientas/herramientas.module')
+    .then(m => m.HerramientasModule)
   },
-  { path: '**', component: NotFoundComponent }
+  { path: 'login', component: LoginPageComponent },
+  { path: 'consulta-riesgos', component: ConsultaRiesgosComponent },
+  { path: '**', component: NotFoundComponent },
+ 
 ];
 
 @NgModule({

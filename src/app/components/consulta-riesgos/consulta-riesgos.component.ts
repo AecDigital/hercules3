@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RiskTableComponent } from '../risk-table/risk-table.component';
 
 @Component({
   selector: 'app-consulta-riesgos',
